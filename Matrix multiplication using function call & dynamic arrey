@@ -1,0 +1,83 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void mult_matrix(int **a,int **b,int **c, int m ,int n, int p, int q)
+{
+	int i,j,k;
+	if(n != p)
+    printf("\n!!Multiplication can't be performed!!\n\nFor performing this operation the column number of the first matrix & the row number of the second matrix must be same\n!!Please reenter again!!");
+    else
+    {
+    printf("\n\nNow enter the elements(row wise) of the first matrix: ");
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        scanf("%d",&a[i][j]);
+    }
+       printf("\n\nNow enter the elements(row wise) of the second matrix: ");
+    for(i=0;i<p;i++)
+    {
+        for(j=0;j<q;j++)
+        scanf("%d",&b[i][j]);
+    }
+    printf("\n\nSo as per your entry:-\n");
+    printf("\nFirst matrix : \n\n");
+     for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        printf("%d\t",a[i][j]);
+        printf("\n");
+    }
+      printf("\nSecond matrix : \n\n");
+   for(i=0;i<p;i++)
+    {
+        for(j=0;j<q;j++)
+        printf("%d\t",b[i][j]);
+        printf("\n");
+    }
+    printf("\n\nSo,now after performing the multiplication operation we get:- \n");
+     for(i=0;i<m;i++)
+    {
+        for(j=0;j<q;j++)
+        {
+            c[i][j] = 0;
+            for(k=0;k<n;k++)
+            {
+                c[i][j] = c[i][j] + a[i][k]*b[k][j]; 
+            }
+        }
+    }
+
+    printf("\nThe resultant matrix : \n\n");
+     for(i=0;i<m;i++)
+    {
+        for(j=0;j<q;j++)
+        printf("%d\t",c[i][j]);
+        printf("\n");
+    }
+}
+}
+int main ()
+{
+	int **a,**b,**c,m,n,p,q,i,j;
+    printf("Enter the Row number of the first matrix :      ");
+    scanf("%d",&m);
+    printf("Enter the Column number of the first matrix :   ");
+    scanf("%d",&n); 
+    printf("Enter the Row number of the second matrix :     ");
+    scanf("%d",&p);
+    printf("Enter the Column number of the second matrix :  ");
+    scanf("%d",&q);
+    a = (int**)malloc(m*sizeof(int));
+    b = (int**)malloc(p*sizeof(int));
+    c = (int**)malloc(m*sizeof(int));
+    for(i=0;i<m;i++)
+    a[i] = (int*)malloc(n*sizeof(int));
+    for(i=0;i<p;i++)
+    b[i] = (int*)malloc(q*sizeof(int));
+    for(i=0;i<m;i++)
+    c[i] = (int*)malloc(q*sizeof(int));
+    mult_matrix(a,b,c,m,n,p,q);
+
+    }
